@@ -1,0 +1,12 @@
+---
+- name: Run user, group tasks
+  include_tasks: user.yml
+
+- name: Run installation tasks
+  include_tasks: install.yml
+
+- name: Run config tasks
+  include_tasks: config.yml
+
+- name: Run config tasks
+  include_tasks: start.yml

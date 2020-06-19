@@ -1,0 +1,15 @@
+---
+- name: Ensure kafka group exists
+  group:
+    state: present
+    name: "{{ kafka_group }}"
+    system: true
+    gid: "{{ kafka_group_id }}"
+
+- name: Ensure kafka user exists
+  user:
+    state: present
+    name: "{{ kafka_user }}"
+    system: true
+    uid: "{{ kafka_user_id }}"
+    group: "{{ kafka_group }}"

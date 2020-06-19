@@ -1,0 +1,11 @@
+---
+galaxy_info:
+  author: Erik
+  description: Kafka
+  company: Notix
+  license: Commercial
+  min_ansible_version: 2.7
+  platforms:
+    - name: Centos
+  galaxy_tags:
+    - kafka

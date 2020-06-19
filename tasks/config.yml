@@ -1,0 +1,10 @@
+---
+- name: Prepare systemd file
+  template: 
+    src: etc/systemd/kafka.service.j2
+    dest: "{{ kafka_sysd_script }}"
+    mode: 0644
+    force: true
+  notify:
+    - Reload systemd daemon
+    - Restart kafka

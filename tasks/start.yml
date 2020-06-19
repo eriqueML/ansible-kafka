@@ -1,0 +1,6 @@
+---
+- name: Add and enable Kafka service.
+  service:
+    name: kafka
+    state: "{{ kafka_service_state }}"
+    enabled: "{{ kafka_service_enabled }}"
