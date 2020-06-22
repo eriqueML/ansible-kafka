@@ -7,3 +7,8 @@
   systemd:
     state: restarted
     name: kafka
+
+- name: Restart zookeeper
+  systemd:
+    state: restarted
+    name: zookeeper

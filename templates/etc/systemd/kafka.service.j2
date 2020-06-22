@@ -1,12 +1,11 @@
 [Unit]
 Description=Apache Kafka
 Documentation=http://kafka.apache.org/documentation.html
-Requires=network.target
-After=network.target
+Requires=zookeeper.service
 
 [Service]
 Type=simple
-SuccessExitStatus=143
+Environment="JAVA_HOME=/usr/lib/jvm/jre-11-openjdk"
 ExecStart={{ kafka_home_dir }}/bin/kafka-server-start.sh {{ kafka_home_dir }}/config/server.properties
 ExecStop={{ kafka_home_dir }}/bin/kafka-server-stop.sh
 User={{ kafka_user }}

@@ -7,11 +7,29 @@ kafka_group_id: "{{ omit }}"
 
 # installation vars
 kafka_version: 2.5.0
-kafka_install_package: "https://downloads.apache.org/kafka/{{ kafka_version }}/kafka-{{ kafka_version }}-src.tgz"
+kafka_full_version: "2.13-{{ kafka_version }}"
+kafka_install_package: "https://downloads.apache.org/kafka/{{ kafka_version }}/kafka_{{ kafka_full_version }}.tgz"
 
+# kafka main directories
 kafka_install_dir: "/opt"
-kafka_home_dir: "{{ kafka_install_dir }}/kafka-{{ kafka_version }}-src"
+kafka_home_dir: "{{ kafka_install_dir }}/kafka_{{ kafka_full_version }}"
 kafka_log_dir: "/var/log/kafka"
+
+# kafka properties
+kafka_broker_id: 0
+kafka_number_partitions: 1
+
+# kafka systemd vars
 kafka_sysd_script: "/etc/systemd/system/kafka.service"
 kafka_service_state: started
-kafka_service_enabled: true 
+kafka_service_enabled: true
+
+# kafka zookeeper vars
+kafka_zookeeper_data_dir: /var/lib/zookeeper
+kafka_zookeeper_client_host: localhost
+kafka_zookeeper_client_port: 2181
+kafka_zookeeper_enable_server: false
+kafka_zookeeper_server_port: 8080
+kafka_zookeeper_sysd_script: "/etc/systemd/system/zookeeper.service"
+kafka_zookeeper_service_state: started
+kafka_zookeeper_service_enabled: true 

@@ -2,7 +2,7 @@
 - name: Download kafka package
   unarchive:
     src: "{{ kafka_install_package }}"
-    dest: "{{ kafka_home_dir }}"
+    dest: "{{ kafka_install_dir }}"
     owner: "{{ kafka_user }}"
     group: "{{ kafka_group }}"
     remote_src: true

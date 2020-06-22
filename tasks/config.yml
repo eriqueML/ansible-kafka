@@ -1,4 +1,40 @@
 ---
+- name: Create directories
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ kafka_user }}"
+    group: "{{ kafka_group }}"
+    recurse: true
+  loop:
+    - "{{ kafka_zookeeper_data_dir }}"
+    - "{{ kafka_log_dir }}"
+
+- name: Prepare main configuration files
+  template:
+    src: "kafka/config/{{ item }}.j2"
+    dest: "{{ kafka_home_dir }}/config/{{ item }}"
+    owner: "{{ kafka_user }}"
+    group: "{{ kafka_group }}"
+    mode: 0644
+    backup: true
+  loop:
+    - zookeeper.properties
+    - server.properties
+  notify: 
+    - Restart zookeeper
+    - Restart kafka
+
+- name: Prepare systemd file
+  template:
+    src: etc/systemd/zookeeper.service.j2
+    dest: "{{ kafka_zookeeper_sysd_script }}"
+    mode: 0644
+    force: true
+  notify:
+    - Reload systemd daemon
+    - Restart zookeeper
+
 - name: Prepare systemd file
   template: 
     src: etc/systemd/kafka.service.j2
