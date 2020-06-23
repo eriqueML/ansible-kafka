@@ -28,11 +28,12 @@ kafka_consumer_host: localhost
 kafka_consumer_port: 9092 
 kafka_consumer_group_id: test-consumer-group
 
-kafka_create_topic: true
 kafka_create_topic_tool: "{{ kafka_home_dir }}/bin/kafka-topics.sh"
+kafka_create_topics: []
+#  - test
+#  - test2
 kafka_replication_factor: 1
 kafka_partitions_number: 1
-kafka_topic_name: test
 
 # kafka systemd vars
 kafka_sysd_script: "/etc/systemd/system/kafka.service"

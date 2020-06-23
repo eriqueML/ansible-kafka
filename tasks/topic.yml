@@ -1,11 +1,21 @@
 ---
+- name: Check if topic exists
+  shell: >
+    {{ kafka_create_topic_tool }} --list
+    --bootstrap-server "{{ kafka_broker_host }}:{{ kafka_broker_port }}"
+  args:
+    executable: /bin/bash
+  register: kafka_existed_topics
+  when: kafka_create_topics != []
+
 - name: Create topic
   shell: >
     {{ kafka_create_topic_tool }} --create 
     --bootstrap-server "{{ kafka_broker_host }}:{{ kafka_broker_port }}"
     --replication-factor "{{ kafka_replication_factor }}" 
     --partitions "{{ kafka_partitions_number }}"
-    --topic "{{ kafka_topic_name }}"
+    --topic "{{ item }}"
   args:
     executable: /bin/bash
-  when: kafka_create_topic
+  loop: "{{ kafka_create_topics }}"
+  when: kafka_create_topics != []
