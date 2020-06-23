@@ -17,7 +17,22 @@ kafka_log_dir: "/var/log/kafka"
 
 # kafka properties
 kafka_broker_id: 0
-kafka_number_partitions: 1
+
+kafka_broker_host: localhost
+kafka_broker_port: 9092
+
+kafka_producer_host: localhost
+kafka_producer_port: 9092 
+
+kafka_consumer_host: localhost
+kafka_consumer_port: 9092 
+kafka_consumer_group_id: test-consumer-group
+
+kafka_create_topic: true
+kafka_create_topic_tool: "{{ kafka_home_dir }}/bin/kafka-topics.sh"
+kafka_replication_factor: 1
+kafka_partitions_number: 1
+kafka_topic_name: test
 
 # kafka systemd vars
 kafka_sysd_script: "/etc/systemd/system/kafka.service"

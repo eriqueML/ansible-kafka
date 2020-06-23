@@ -21,6 +21,8 @@
   loop:
     - zookeeper.properties
     - server.properties
+    - producer.properties
+    - consumer.properties
   notify: 
     - Restart zookeeper
     - Restart kafka

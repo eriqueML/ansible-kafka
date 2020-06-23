@@ -10,3 +10,6 @@
 
 - name: Run config tasks
   include_tasks: start.yml
+
+- name: Run topic tasks
+  include_tasks: topic.yml

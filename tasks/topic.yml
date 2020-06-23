@@ -1,0 +1,11 @@
+---
+- name: Create topic
+  shell: >
+    {{ kafka_create_topic_tool }} --create 
+    --bootstrap-server "{{ kafka_broker_host }}:{{ kafka_broker_port }}"
+    --replication-factor "{{ kafka_replication_factor }}" 
+    --partitions "{{ kafka_partitions_number }}"
+    --topic "{{ kafka_topic_name }}"
+  args:
+    executable: /bin/bash
+  when: kafka_create_topic
